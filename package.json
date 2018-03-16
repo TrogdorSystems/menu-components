@@ -11,6 +11,7 @@
     "build:prod": "./node_modules/.bin/webpack --config './webpack.prod.config.js'",
     "bundle": "./node_modules/.bin/webpack",
     "seed": "node seedDatabase.js",
+    "data": "node --expose-gc SDC_DB/createSchema.js",
     "server": "nodemon server.js"
   },
   "jest": {
@@ -58,6 +59,7 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "faker": "^4.1.0",
     "jquery": "^3.3.1",
     "mongodb-memory-server": "^1.7.0",
     "mongoose": "^5.0.7",
