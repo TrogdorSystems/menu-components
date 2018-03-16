@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const fs = require('fs');
+const exec = require('child_process').exec;
 const { generator } = require('../data/sampleData');
 
 const writeStream = fs.createWriteStream('./db/testData.json');
@@ -50,6 +51,8 @@ function write10Million(start = 1e7) {
   }
 
   if (i === 0) {
+    const command = 'mongoimport -d silverspoon -c restaurantMenus --file db/testData.json --numInsertionWorkers 4';
+    exec(command);
     mongoose.disconnect();
   }
 }
