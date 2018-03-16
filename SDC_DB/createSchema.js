@@ -34,7 +34,10 @@ const restaurantSchema = mongoose.Schema({
 
 const Restaurant = mongoose.model('restaurantMenus', restaurantSchema);
 
-function write10Million(start = 1e7) {
+Restaurant.init()
+  .then(() => mongoose.disconnect());
+
+function write10Million(start = 1e2) {
   let i = start;
   let freeSpace = true;
 
@@ -53,7 +56,6 @@ function write10Million(start = 1e7) {
   if (i === 0) {
     const command = 'mongoimport -d silverspoon -c restaurantMenus --file db/testData.json --numInsertionWorkers 4';
     exec(command);
-    mongoose.disconnect();
   }
 }
 
