@@ -1,4 +1,5 @@
 const menu = require('../helpers/menuGenerator');
+const faker = require('faker');
 
 const initialData = [
   { id: 90976, name: 'Beard Papa\'s' },
@@ -123,21 +124,18 @@ const initialData = [
   { id: 305, name: 'Pacific Catch' },
 ];
 
-const sampleDataGen = () => {
-  const dataArr = [];
-  initialData.forEach((item) => {
-    dataArr.push({
-      id: item.id,
-      name: item.name,
-      menu: {
-        lunch: menu.entreeMenuGen(),
-        dinner: menu.entreeMenuGen(),
-        dessert: menu.dessertMenuGen(),
-      },
-    });
-  });
-  return dataArr;
+const sampleDataGen = (i) => {
+  return {
+    id: i,
+    name: faker.name.findName(),
+    menu: {
+      lunch: menu.entreeMenuGen(),
+      dinner: menu.entreeMenuGen(),
+      dessert: menu.dessertMenuGen(),
+    },
+  }
 };
 
 const sampleData = sampleDataGen();
-module.exports = sampleData;
+module.exports.sampleData = sampleData;
+module.exports.generator = sampleDataGen;
