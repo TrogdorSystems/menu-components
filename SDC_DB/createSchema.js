@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const fs = require('fs');
-const exec = require('child_process').exec;
+const { exec } = require('child_process');
 const { generator } = require('../data/sampleData');
 
 const writeStream = fs.createWriteStream('./db/testData.json');
