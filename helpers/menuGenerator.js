@@ -142,16 +142,16 @@ const getIndex = array => Math.floor(Math.random() * array.length);
 const entreeMenuGen = () => {
   let count = 20;
   const result = [];
-  const usedNouns = [];
-  const usedAdj = [];
+  const usedNouns = new Set([]);
+  const usedAdj = new Set([]);
   while (count > 0) {
     const adj1 = getIndex(adjectives);
     const adj2 = getIndex(adjectives);
     const noun = getIndex(nouns);
     const price = Math.floor((Math.random() * (40 - 10)) + 10);
-    if (!usedNouns.includes(noun) && !usedAdj.includes(adj1)) {
-      usedNouns.push(noun);
-      usedAdj.push(adj1);
+    if (!usedNouns.has(noun) && !usedAdj.has(adj1)) {
+      usedNouns.add(noun);
+      usedAdj.add(adj1);
       if (adj1 > 24 && adj1 !== adj2) {
         count -= 1;
         result.push({
