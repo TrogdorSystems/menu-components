@@ -42,7 +42,7 @@ Restaurant.init()
 const sampleDataGen = (i) => {
   const data = {
     id: i,
-    name: faker.name.findName(),
+    name: faker.company.companyName(),
     menu: {
       lunch: menu.entreeMenuGen(),
       dinner: menu.entreeMenuGen(),
@@ -60,8 +60,8 @@ function write10Million(start = 1e7) {
     const data = sampleDataGen(i);
     freeSpace = writeStream.write(`${JSON.stringify(data)}\n`);
     i -= 1;
-    if (i % 10000 === 0) {
-      console.log(i);
+    if (i % 100000 === 0) {
+      console.log('ADDED', i);
     }
   }
 
@@ -73,7 +73,7 @@ function write10Million(start = 1e7) {
 
   if (i === 0) {
     const command = 'mongoimport -d silverspoon -c restaurantmenus --file db/testData.json --type json --numInsertionWorkers 4';
-    exec(command, () => console.log('EXECUTED'));
+    exec(command, () => console.log('COMPLETED IMPORT'));
   }
 }
 
