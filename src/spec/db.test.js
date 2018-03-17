@@ -16,14 +16,14 @@ describe('database helpers - save and find', () => {
   // });
 
   // nb: the sample data contains a duplication of the restaurant with id: 89104
-  it('should save duplicate restaurants', async (done) => {
-    expect.assertions(2);
-    db.find({ name: 'Mr. Gina Armstrong' }, (err, docs) => {
-      if (err) { throw err; }
-      expect(docs.length).toBeGreaterThan(1);
-      done();
-    });
-  });
+  // it('should save duplicate restaurants', async (done) => {
+  //   expect.assertions(2);
+  //   db.find({ name: 'Mr. Gina Armstrong' }, (err, docs) => {
+  //     if (err) { throw err; }
+  //     expect(docs.length).toBeGreaterThan(1);
+  //     done();
+  //   });
+  // });
 
   // it('should not insert duplicate restaurants when the same object is saved', async (done) => {
   //   expect.assertions(1);
