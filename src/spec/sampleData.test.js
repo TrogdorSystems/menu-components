@@ -1,5 +1,4 @@
-const sampleData = require('../../data/sampleData');
-
+const { sampleData } = require('../../data/sampleData');
 // test sample data array
 describe('sample data array', () => {
   it('should be and array', () => {
