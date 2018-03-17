@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const fs = require('fs');
+const faker = require('faker');
 const { exec } = require('child_process');
-const { generator } = require('../data/sampleData');
+const menu = require('../helpers/menuGenerator');
+
 
 const writeStream = fs.createWriteStream('./db/testData.json');
 
@@ -30,21 +32,37 @@ const restaurantSchema = mongoose.Schema({
       tags: String,
     }],
   },
-}).index({ name: 'text' });
+}).index({ name: 1 });
 
 const Restaurant = mongoose.model('restaurantMenus', restaurantSchema);
 
 Restaurant.init()
   .then(() => mongoose.disconnect());
 
-function write10Million(start = 1e2) {
+const sampleDataGen = (i) => {
+  const data = {
+    id: i,
+    name: faker.name.findName(),
+    menu: {
+      lunch: menu.entreeMenuGen(),
+      dinner: menu.entreeMenuGen(),
+      dessert: menu.dessertMenuGen(),
+    },
+  };
+  return data;
+};
+
+function write10Million(start = 1e7) {
   let i = start;
   let freeSpace = true;
 
   while (i > 0 && freeSpace) {
-    const data = generator(i);
+    const data = sampleDataGen(i);
     freeSpace = writeStream.write(`${JSON.stringify(data)}\n`);
     i -= 1;
+    if (i % 10000 === 0) {
+      console.log(i);
+    }
   }
 
   if (i > 0) {
@@ -54,8 +72,8 @@ function write10Million(start = 1e2) {
   }
 
   if (i === 0) {
-    const command = 'mongoimport -d silverspoon -c restaurantMenus --file db/testData.json --numInsertionWorkers 4';
-    exec(command);
+    const command = 'mongoimport -d silverspoon -c restaurantmenus --file db/testData.json --type json --numInsertionWorkers 4';
+    exec(command, () => console.log('EXECUTED'));
   }
 }
 
