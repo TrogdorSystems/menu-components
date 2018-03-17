@@ -52,7 +52,7 @@ const sampleDataGen = (i) => {
   return data;
 };
 
-function write10Million(start = 1e7) {
+const write10Million = (start = 1e7) => {
   let i = start;
   let freeSpace = true;
 

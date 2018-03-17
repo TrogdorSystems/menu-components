@@ -34,7 +34,7 @@ const generateDessert = () => {
   return desserts[index];
 };
 
-const generateMenuItem = (id) => {
+const generateMenuItem = () => {
   let name;
   const menu = generateMenuType();
   if (menu === 'DESSERT') {
@@ -46,7 +46,7 @@ const generateMenuItem = (id) => {
   const glutenFree = willHaveTag();
   const vegetarian = willHaveTag();
   const vegan = willHaveTag();
-  return `${id},${name},${menu},${price},${glutenFree},${vegetarian},${vegan}`;
+  return `${name},${menu},${price},${glutenFree},${vegetarian},${vegan}\n`;
 };
 
 console.log(generateMenuItem(3));
