@@ -16,7 +16,7 @@ describe('server request handling', () => {
 
   test('should return correct data shape for lunch menu', (done) => {
     request(app)
-      .get('/restaurants/90976/menu/lunch')
+      .get('/restaurants/Mr.%20Gina%20Armstrong/menu/lunch')
       .then((response) => {
         expect(Array.isArray(response.body)).toBe(true);
         expect(response.body.length).toBe(20);
@@ -27,7 +27,7 @@ describe('server request handling', () => {
 
   test('should return correct data shape for dinner menu', (done) => {
     request(app)
-      .get('/restaurants/90976/menu/dinner')
+      .get('/restaurants/Mr.%20Gina%20Armstrong/menu/dinner')
       .then((response) => {
         expect(Array.isArray(response.body)).toBe(true);
         expect(response.body.length).toBe(20);
@@ -38,7 +38,7 @@ describe('server request handling', () => {
 
   test('should return correct data shape for dessert menu', (done) => {
     request(app)
-      .get('/restaurants/90976/menu/dessert')
+      .get('/restaurants/Mr.%20Gina%20Armstrong/menu/dessert')
       .then((response) => {
         expect(Array.isArray(response.body)).toBe(true);
         expect(response.body.length).toBe(8);
@@ -50,7 +50,7 @@ describe('server request handling', () => {
   describe('returning only specified items based on their tags', () => {
     test('should return only gluten-free items', (done) => {
       request(app)
-        .get('/restaurants/90976/menu/lunch/gluten-free')
+        .get('/restaurants/Mr.%20Gina%20Armstrong/menu/lunch/gluten-free')
         .then((response) => {
           const tagObj = {};
           response.body.forEach((item) => {
@@ -70,7 +70,7 @@ describe('server request handling', () => {
 
     test('should return only vegan items', (done) => {
       request(app)
-        .get('/restaurants/90976/menu/lunch/vegan')
+        .get('/restaurants/Mr.%20Gina%20Armstrong/menu/lunch/vegan')
         .then((response) => {
           const tagObj = {};
           response.body.forEach((item) => {
@@ -89,7 +89,7 @@ describe('server request handling', () => {
     });
     test('should return only gluten-free items', (done) => {
       request(app)
-        .get('/restaurants/90976/menu/lunch/gluten-free')
+        .get('/restaurants/Mr.%20Gina%20Armstrong/menu/lunch/gluten-free')
         .then((response) => {
           const tagObj = {};
           response.body.forEach((item) => {
