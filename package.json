@@ -61,7 +61,6 @@
     "express": "^4.16.2",
     "faker": "^4.1.0",
     "jquery": "^3.3.1",
-    "knex": "^0.14.4",
     "mongodb-memory-server": "^1.7.0",
     "mongoose": "^5.0.7",
     "morgan": "^1.9.0",
