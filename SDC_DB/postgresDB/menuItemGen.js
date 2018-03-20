@@ -8,17 +8,6 @@ const {
 
 const getIndex = array => Math.floor(Math.random() * array.length);
 
-const generateMenuType = () => {
-  const menus = ['LUNCH', 'DINNER', 'DESSERT'];
-  const index = Math.floor(Math.random() * menus.length);
-  return menus[index];
-};
-
-const willHaveTag = () => {
-  const chance = Math.floor(Math.random() * 100);
-  return chance < 20;
-};
-
 const generateMenuName = () => {
   const adj1 = adjectives[getIndex(adjectives)];
   const adj2 = adjectives[getIndex(adjectives)];
@@ -34,21 +23,19 @@ const generateDessert = () => {
   return desserts[index];
 };
 
-const generateMenuItem = () => {
+const generateMenuItem = (menuType, resId) => {
   let name;
-  const menu = generateMenuType();
+  const menu = menuType;
   if (menu === 'DESSERT') {
     name = generateDessert();
   } else {
     name = generateMenuName();
   }
   const price = Math.floor((Math.random() * (40 - 10)) + 10);
-  const glutenFree = willHaveTag();
-  const vegetarian = willHaveTag();
-  const vegan = willHaveTag();
-  return `${name},${menu},${price},${glutenFree},${vegetarian},${vegan}\n`;
+  return `${name},${menu},${price},${resId}`;
 };
 
-console.log(generateMenuItem(3));
-
-module.exports = generateMenuItem;
+module.exports = {
+  generateMenuItem,
+  generateDessert,
+};
