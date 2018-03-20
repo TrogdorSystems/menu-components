@@ -75,6 +75,6 @@ const write10Million = (start = 1e7) => {
     const command = 'mongoimport -d silverspoon -c restaurantmenus --file db/testData.json --type json --numInsertionWorkers 4';
     exec(command, () => console.log('COMPLETED IMPORT'));
   }
-}
+};
 
 write10Million();
