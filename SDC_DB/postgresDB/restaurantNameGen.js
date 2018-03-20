@@ -1,10 +1,8 @@
 const faker = require('faker');
 
-const generateRestaurantName = (id) => {
-  const name = faker.company.companyName();
-  return `${id},${name}`;
+const generateRestaurantName = () => {
+  const name = faker.name.findName();
+  return `${name}\n`;
 };
-
-console.log(generateRestaurantName(2));
 
 module.exports = generateRestaurantName;
