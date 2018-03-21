@@ -5,7 +5,7 @@ const { exec } = require('child_process');
 const menu = require('../helpers/menuGenerator');
 
 
-const writeStream = fs.createWriteStream('./db/testData.json');
+const writeStream = fs.createWriteStream('./SDC_DB/mongoData.json');
 
 mongoose.connect('mongodb://localhost/silverspoon');
 
@@ -42,7 +42,7 @@ Restaurant.init()
 const sampleDataGen = (i) => {
   const data = {
     id: i,
-    name: faker.company.companyName(),
+    name: faker.lorem.word() + i,
     menu: {
       lunch: menu.entreeMenuGen(),
       dinner: menu.entreeMenuGen(),
@@ -72,7 +72,7 @@ const write10Million = (start = 1e7) => {
   }
 
   if (i === 0) {
-    const command = 'mongoimport -d silverspoon -c restaurantmenus --file db/testData.json --type json --numInsertionWorkers 4';
+    const command = 'mongoimport -d silverspoon -c restaurantmenus --file ./SDC_DB/mongoData.json --type json --numInsertionWorkers 4';
     exec(command, () => console.log('COMPLETED IMPORT'));
   }
 };
