@@ -59,7 +59,7 @@ const save = (options, cb) => {
 const find = (options, cb) => {
   const query = options.query || 'id menu.lunch';
   const name = options.name || 'Mr. Gina Armstrong';
-
+  console.log('OVER HERE');
   if (query === '{}') {
     Restaurant.find({}).exec((err, data) => {
       if (err) {
@@ -73,7 +73,6 @@ const find = (options, cb) => {
       if (err) {
         cb(err, null);
       } else {
-        console.log(data);
         cb(null, data);
       }
     });
