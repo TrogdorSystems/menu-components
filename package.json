@@ -64,6 +64,7 @@
     "mongodb-memory-server": "^1.7.0",
     "mongoose": "^5.0.7",
     "morgan": "^1.9.0",
+    "newrelic": "^3.2.0",
     "nodemon": "^1.15.1",
     "pg": "^7.4.1",
     "prop-types": "^15.6.1",
