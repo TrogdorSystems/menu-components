@@ -1,0 +1,14 @@
+config:
+  target: 'http://localhost:3005'
+  phases:
+    - duration: 60
+      arrivalRate: 10
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - flow:
+    - loop:
+      - get:
+          url: "/restaurants/voluptatem9999975/menu/lunch"
+      count: 100
