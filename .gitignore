@@ -7,3 +7,4 @@ coverage/
 testData.json
 results.bin
 testData/
+newrelic.js
