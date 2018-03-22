@@ -9,3 +9,4 @@ results.bin
 testData/
 newrelic.js
 newrelic_agent.log
+dump.rdb
