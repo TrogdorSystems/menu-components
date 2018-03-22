@@ -58,10 +58,10 @@ const save = (options, cb) => {
 
 const find = (options, cb) => {
   const query = options.query || 'id menu.lunch';
-  const name = options.name || 'Mr. Gina Armstrong';
-
+  const name = options.name || 'voluptatem9999975';
+  console.log(options);
   if (query === '{}') {
-    Restaurant.find({}).exec((err, data) => {
+    Restaurant.findOne({ name }).exec((err, data) => {
       if (err) {
         cb(err, null);
       } else {
@@ -69,11 +69,10 @@ const find = (options, cb) => {
       }
     });
   } else {
-    Restaurant.find({ name }).select(query).exec((err, data) => {
+    Restaurant.findOne({ name }).select(query).exec((err, data) => {
       if (err) {
         cb(err, null);
       } else {
-        console.log(data);
         cb(null, data);
       }
     });
