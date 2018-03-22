@@ -70,6 +70,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "redis": "^2.8.0",
     "style-loader": "^0.20.2"
   }
 }
