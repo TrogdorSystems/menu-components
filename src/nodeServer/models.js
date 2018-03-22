@@ -8,8 +8,8 @@ module.exports = {
     response.writeHead(200, { 'Content-Type': 'text/html' });
     htmlStream.pipe(response);
   },
-  serveBundle: (request, response) => {
-    const bundleStream = fs.createReadStream('../public/bundle.js');
+  serveBundle: (request, response, fileName) => {
+    const bundleStream = fs.createReadStream(`../public/${fileName}`);
     response.writeHead(200, { 'Content-Type': 'text/javascript' });
     bundleStream.pipe(response);
   },
@@ -21,7 +21,6 @@ module.exports = {
       name,
       query: `menu.${meal}`,
     };
-    console.log(queryObj);
     redisClient.get(redisKey, (error, data) => {
       if (data !== null) {
         response.writeHead(200, { 'Content-Type': 'application/json' });

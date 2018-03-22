@@ -13,8 +13,8 @@ const app = http.createServer((request, response) => {
     const paths = url.slice(1).split('/');
     if (paths[0] === '') {
       serveHtml(request, response);
-    } else if (paths[0] === 'bundle.js') {
-      serveBundle(request, response);
+    } else if (paths[0] === 'bundle.js' || paths[0] === 'app-server.js') {
+      serveBundle(request, response, paths[0]);
     } else if (paths[0] === 'restaurants' && paths[2] === 'menu') {
       if (paths.length === 4) {
         const itemInfo = [paths[1], paths[3]];

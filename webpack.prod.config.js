@@ -1,9 +1,7 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack')
 
-module.exports = {
-  entry: './src/client/app/prodDist.jsx',
-
+const common = {
   module: {
     rules: [
       {
@@ -26,13 +24,32 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
-
-  output: {
-    filename: 'bundle-prod.js',
-    path: path.resolve(__dirname, 'src/public'),
-    publicPath: '/'
-  },
   plugins: [
     new Dotenv()
   ],
-}; 
+};
+
+const clientSide = {
+  entry: './src/client/app/prodDist.jsx',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'src/public'),
+    publicPath: '/'
+  },
+}
+
+const serverSide = {
+  entry: './src/client/app/server.js',
+  target: 'node',
+  output: {
+    filename: 'app-server.js',
+    path: path.resolve(__dirname, 'src/public'),
+    libraryTarget: 'commonjs-module',
+    publicPath: '/'
+  }
+};
+
+module.exports = [
+  Object.assign({}, common, clientSide),
+  Object.assign({}, common, serverSide),
+];

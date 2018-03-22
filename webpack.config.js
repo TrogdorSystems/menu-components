@@ -4,14 +4,9 @@ const path = require('path');
 const APP_DIR = path.resolve(__dirname + '/src/client');
 const BUILD_DIR = path.resolve(__dirname + '/src/public');
 
-const config = {
-  entry: APP_DIR + '/app/index.jsx',
-  output: {
-    path: BUILD_DIR,
-    filename: 'bundle.js',
-  },
+const common = {
   resolve: {
-    extensions: ['.jsx', '.js'],
+    extensions: ['.js', '.jsx']
   },
   module: {
     loaders: [
@@ -28,4 +23,26 @@ const config = {
   },
 };
 
-module.exports = config;
+const clientSide = {
+  entry: APP_DIR + '/app/index.jsx',
+  output: {
+    path: BUILD_DIR,
+    filename: 'bundle.js',
+  },
+}
+
+const serverSide = {
+  entry: APP_DIR + '/app/server.js',
+  target: 'node',
+  output: {
+    filename: 'app-server.js',
+    path: path.resolve(__dirname, 'src/public'),
+    libraryTarget: 'commonjs-module',
+    publicPath: '/'
+  }
+};
+
+module.exports = [
+  Object.assign({}, common, clientSide),
+  Object.assign({}, common, serverSide),
+];
