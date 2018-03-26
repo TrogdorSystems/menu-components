@@ -8,6 +8,10 @@ const common = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
+};
+
+const clientSide = {
+  entry: APP_DIR + '/app/prodDist.jsx',
   module: {
     loaders: [
       {
@@ -21,21 +25,30 @@ const common = {
       },
     ],
   },
-};
-
-const clientSide = {
-  entry: APP_DIR + '/app/index.jsx',
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js',
   },
 }
-
+// style-loader!
 const serverSide = {
   entry: APP_DIR + '/app/server.js',
   target: 'node',
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?/,
+        include: APP_DIR,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.css$/,
+        loader: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+      },
+    ],
+  },
   output: {
-    filename: 'app-server.js',
+    filename: 'bundle-server.js',
     path: path.resolve(__dirname, 'src/public'),
     libraryTarget: 'commonjs-module',
     publicPath: '/'
