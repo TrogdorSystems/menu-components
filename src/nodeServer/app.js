@@ -6,26 +6,24 @@ const {
   filterBy,
 } = require('./models');
 
+const tags = ['vegan', 'vegetarian', 'gluten-free'];
 const app = http.createServer((request, response) => {
   const { method, url } = request;
+  const paths = url.slice(1).split('/');
+
+  const [base, restuarantName, menu, meal, tag] = paths;
 
   if (method === 'GET') {
-    const paths = url.slice(1).split('/');
-    if (paths[0] === '') {
+    if (base === '') {
       serveHtml(request, response);
-    } else if (paths[0] === 'bundle.js' || paths[0] === 'app-server.js') {
-      serveBundle(request, response, paths[0]);
-    } else if (paths[0] === 'restaurants' && paths[2] === 'menu') {
-      if (paths.length === 4) {
-        const itemInfo = [paths[1], paths[3]];
-        menuType(request, response, itemInfo);
-      } else if (paths.length === 5) {
-        const itemInfo = [paths[1], paths[3], paths[4]];
-        filterBy(request, response, itemInfo);
-      } else {
-        response.writeHead(404);
-        response.end();
-      }
+    } else if (base === 'bundle.js' || base === 'bundle-server.js') {
+      serveBundle(request, response, base);
+    } else if (base === 'restaurants' && menu === 'menu' && !tag) {
+      const itemInfo = [restuarantName, meal];
+      menuType(request, response, itemInfo);
+    } else if (tags.includes(tag)) {
+      const itemInfo = [restuarantName, meal, tag];
+      filterBy(request, response, itemInfo);
     } else {
       response.writeHead(404);
       response.end();
