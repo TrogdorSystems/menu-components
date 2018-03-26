@@ -3,8 +3,8 @@ config:
   # http:
   #   pool: 20
   phases:
-    - duration: 10
-      arrivalRate: 100
+    - duration: 30
+      arrivalRate: 10
   defaults:
     headers:
       x-my-service-auth: '987401838271002188298567'
@@ -13,4 +13,4 @@ scenarios:
     - loop:
       - get:
           url: "/restaurants/voluptatem9999975/menu/lunch/vegan"
-      count: 50
+      count: 1000
