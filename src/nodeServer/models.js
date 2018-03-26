@@ -16,7 +16,7 @@ module.exports = {
     bundleStream.on('data', (chunk) => {
       data += chunk;
     }).on('end', () => {
-      response.setHeader('ETag', etag(data));
+      response.setHeader('etag', etag(data));
       response.writeHead(200, { 'Content-Type': 'text/javascript' });
       response.end(data);
     });
