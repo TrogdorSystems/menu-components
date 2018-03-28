@@ -1,9 +1,11 @@
 config:
-  target: 'http://localhost:3005'
-  # http:
-  #   pool: 20
+  target: 'http://ec2-54-67-41-26.us-west-1.compute.amazonaws.com'
+  payload:
+    path: './menuUri.csv'
+    fields:
+      - 'uri'
   phases:
-    - duration: 30
+    - duration: 60
       arrivalRate: 10
   defaults:
     headers:
@@ -12,5 +14,5 @@ scenarios:
   - flow:
     - loop:
       - get:
-          url: "/restaurants/voluptatem9999975/menu/lunch/vegan"
-      count: 1000
+          url: "{{uri}}"
+      count: 300

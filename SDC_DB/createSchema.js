@@ -7,7 +7,7 @@ const menu = require('../helpers/menuGenerator');
 
 const writeStream = fs.createWriteStream('./SDC_DB/mongoData.json');
 
-mongoose.connect('mongodb://localhost/silverspoon');
+mongoose.connect('mongodb://ec2-52-53-248-96.us-west-1.compute.amazonaws.com/silverspoon');
 
 const restaurantSchema = mongoose.Schema({
   id: {
@@ -52,7 +52,7 @@ const sampleDataGen = (i) => {
   return data;
 };
 
-const write10Million = (start = 1e7) => {
+const write10Million = (start = 1e6) => {
   let i = start;
   let freeSpace = true;
 
@@ -72,7 +72,7 @@ const write10Million = (start = 1e7) => {
   }
 
   if (i === 0) {
-    const command = 'mongoimport -d silverspoon -c restaurantmenus --file ./SDC_DB/mongoData.json --type json --numInsertionWorkers 4';
+    const command = 'mongoimport --uri mongodb://ec2-52-53-248-96.us-west-1.compute.amazonaws.com/silverspoon -c restaurantmenus --file ./SDC_DB/mongoData.json --type json --numInsertionWorkers 4';
     exec(command, () => console.log('COMPLETED IMPORT'));
   }
 };

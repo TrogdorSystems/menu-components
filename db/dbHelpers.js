@@ -58,7 +58,7 @@ const save = (options, cb) => {
 
 const find = (options, cb) => {
   const query = options.query || 'id menu.lunch';
-  const name = options.name || 'voluptatem9999975';
+  const name = options.name || 'quos999999';
   if (query === '{}') {
     Restaurant.findOne({ name }).exec((err, data) => {
       if (err) {

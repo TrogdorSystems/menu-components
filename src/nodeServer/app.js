@@ -12,7 +12,6 @@ const app = http.createServer((request, response) => {
   const paths = url.slice(1).split('/');
 
   const [base, restuarantName, menu, meal, tag] = paths;
-
   if (method === 'GET') {
     if (base === '') {
       serveHtml(request, response);
