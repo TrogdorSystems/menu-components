@@ -4,7 +4,7 @@
   "description": "the menu component for our FEC project",
   "main": "src/server/server.js",
   "scripts": {
-    "start": "node src/server/server.js",
+    "start": "node src/nodeServer/server.js",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "build": "./node_modules/.bin/webpack -d --watch",
@@ -12,7 +12,8 @@
     "bundle": "./node_modules/.bin/webpack",
     "seed": "node seedDatabase.js",
     "data": "node --expose-gc SDC_DB/createSchema.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "bundle": "./node_modules/.bin/webpack -d"
   },
   "jest": {
     "moduleNameMapper": {
