@@ -58,7 +58,8 @@ const save = (options, cb) => {
 
 const find = (options, cb) => {
   const query = options.query || 'id menu.lunch';
-  const name = options.name || 'voluptatem9999975';
+  const name = options.name || 'quos999999';
+  console.log('FIND - DB HELPERS', query, name);
   if (query === '{}') {
     Restaurant.findOne({ name }).exec((err, data) => {
       if (err) {
@@ -68,10 +69,13 @@ const find = (options, cb) => {
       }
     });
   } else {
+    console.log('CHECKING MONGO');
     Restaurant.findOne({ name }).select(query).exec((err, data) => {
+      console.log('MONGO', err, data);
       if (err) {
         cb(err, null);
       } else {
+        console.log('FOUND');
         cb(null, data);
       }
     });
