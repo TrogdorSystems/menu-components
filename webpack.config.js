@@ -27,7 +27,7 @@ const clientSide = {
   },
   output: {
     path: BUILD_DIR,
-    filename: 'bundle.js',
+    filename: 'menu-bundle.js',
   },
 }
 // style-loader!
@@ -48,7 +48,7 @@ const serverSide = {
     ],
   },
   output: {
-    filename: 'bundle-server.js',
+    filename: 'menu-bundle-server.js',
     path: path.resolve(__dirname, 'src/public'),
     libraryTarget: 'commonjs-module',
     publicPath: '/'

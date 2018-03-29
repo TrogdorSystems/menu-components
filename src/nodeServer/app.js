@@ -15,7 +15,7 @@ const app = http.createServer((request, response) => {
   if (method === 'GET') {
     if (base === '') {
       serveHtml(request, response);
-    } else if (base === 'bundle.js' || base === 'bundle-server.js') {
+    } else if (base === 'menu-bundle.js' || base === 'menu-bundle-server.js') {
       serveBundle(request, response, base);
     } else if (base === 'restaurants' && menu === 'menu' && !tag) {
       const itemInfo = [restuarantName, meal];
