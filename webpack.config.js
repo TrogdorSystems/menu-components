@@ -48,7 +48,7 @@ const serverSide = {
     ],
   },
   output: {
-    filename: 'Menu-View-bundle-server.js',
+    filename: 'MenuView-bundle-server.js',
     path: path.resolve(__dirname, 'src/public'),
     libraryTarget: 'commonjs-module',
     publicPath: '/'
